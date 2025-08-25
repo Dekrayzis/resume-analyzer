@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useState } from "react";
 import NavBar from "~/components/navBar";
 import { resumes as mockResumes } from "~/constants";
+import {ResumeCard} from "~/components/ResumeCard";
 
 type Status = "loading" | "empty" | "ready";
 
@@ -49,9 +50,7 @@ export default function Home() {
         ready: (
             <div className="resumes-section">
                 {resumes.map((resume) => (
-                    <article key={resume.id} className="resume-card">
-                        <h3 className="text-lg font-semibold">{resume.jobTitle}</h3>
-                    </article>
+                    <ResumeCard key={resume.id} resume={resume} />
                 ))}
             </div>
         ),
