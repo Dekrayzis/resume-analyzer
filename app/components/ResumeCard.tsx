@@ -1,17 +1,12 @@
 import {Link} from "react-router";
+import {ScoreCircle} from "~/components/ScoreCircle";
+
 interface ResumeCardProps {
-    resume: {
-        id: string;
-        companyName?: string;
-        jobTitle?: string;
-        imagePath?: string | null;
-        feedback?: string | null;
-    };
+    resume: Resume;
 }
 
 export const ResumeCard = ({ resume }: ResumeCardProps) => {
-    const { id, companyName, jobTitle, imagePath } = resume;
-    const titleId = `resume-title-${id}`;
+    const { id, companyName, jobTitle, feedback } = resume;
     return (
         <Link to={`/resume/${id}`} className="resume-card animate-in fade-in duration-1000">
             <div className="resume-card-header">
@@ -19,6 +14,9 @@ export const ResumeCard = ({ resume }: ResumeCardProps) => {
                     {companyName && <h2 className="!text-black font-bold break-words">{companyName}</h2>}
                     {jobTitle && <h3 className="text-lg break-words text-gray-500">{jobTitle}</h3>}
                     {!companyName && !jobTitle && <h2 className="!text-black font-bold">Resume</h2>}
+                </div>
+                <div className="flex-shrink-0">
+                    <ScoreCircle score={feedback.overallScore} />
                 </div>
             </div>
         </Link>
